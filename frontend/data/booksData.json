@@ -1,0 +1,50 @@
+[
+  {
+    "id":1,
+    "name":"Harry Potter and the Sorcerer's Stone",
+    "title":"The Illustrated Edition (Harry Potter, Book 1)",
+    "price":0,
+    "category":"free",
+    "image":"../src/assets/images/harrypotter.jpg"
+  },
+  {
+    "id":2,
+    "name":"The Chronicles of Narnia",
+    "title":"The Chronicles of Narnia",
+    "price":0,
+    "category":"free",
+    "image":"../src/assets/images/narnia.jpg"
+  },
+  {
+    "id":3,
+    "name":"Rich Dad Poor Dad",
+    "title":"Rich Dad Poor Dad",
+    "price":0,
+    "category":"free",
+    "image":"../src/assets/images/richdadpoordad.png"
+  },
+  {
+    "id": 4,
+    "name": "One Piece",
+    "title": "One Piece",
+    "price": 123,
+    "category": "free",
+    "image": "../src/assets/images/bookstack.jpg"
+  },
+  {
+    "id": 5,
+    "name": "The Great Gatsby",
+    "title": "The Great Gatsby",
+    "price": 123,
+    "category": "free",
+    "image": "../src/assets/images/bookstack.jpg"
+  },
+  {
+    "id": 6,
+    "name": "1984",
+    "title": "1984",
+    "price": 123,
+    "category": "free",
+    "image": "https://images.unsplash.com/photo-1557800636-894a64c1696f"
+  }
+]
