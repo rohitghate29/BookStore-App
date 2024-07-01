@@ -6,14 +6,13 @@ import Slider from "react-slick";
 import BookCard from "../cards/BookCard";
 
 function FreeBook() {
-
   const [book, setBook] = useState([]);
 
   useEffect(() => {
     const getBook = async () => {
       try {
         const res = await axios.get("http://localhost:4001/book");
-        const freeBooks = res.data.filter((data) => data.category === "free");
+        const freeBooks = res.data.filter((data) => data.price === 0);
         setBook(freeBooks);
         console.log(freeBooks);
       } catch (error) {
@@ -25,7 +24,7 @@ function FreeBook() {
 
   var settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -64,15 +63,17 @@ function FreeBook() {
         <div>
           <h1 className="font-semibold text-xl pb-4">Free Offered Books</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum, sit
-            aliquam expedita amet deserunt praesentium earum provident officiis
-            neque possimus.
+            Discover our curated selection of free books across various genres.
+            Dive into these books at no cost and expand your knowledge or simply
+            enjoy a good read.
           </p>
         </div>
 
-        <div> 
+        <div>
           <Slider {...settings}>
-            {book.map((item) => (<BookCard item={item} key={item.id} />))}
+            {book.map((item) => (
+              <BookCard item={item} key={item.id} />
+            ))}
           </Slider>
         </div>
       </div>

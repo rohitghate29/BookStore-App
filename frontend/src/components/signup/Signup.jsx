@@ -50,7 +50,6 @@ function Signup() {
     }, 500);
    }
 
-
   return (
     <>
       <div className="h-screen flex items-center justify-center">
