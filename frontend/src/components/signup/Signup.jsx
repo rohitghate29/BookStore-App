@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import toast from 'react-hot-toast';
 
 function Signup() {
+
+  const navigate = useNavigate()
+
   useEffect(() => {
     const modal = document.getElementById("my_modal_3");
     if (modal) {
@@ -16,7 +21,35 @@ function Signup() {
      formState: { errors },
    } = useForm();
 
-   const onSubmit = (data) => console.log(data);
+   const onSubmit = async (data) => {
+    const userInfo = {
+      fullname: data.fullname,
+      email: data.email,
+      password: data.password,
+    }
+    await axios.post("http://localhost:4001/user/signup", userInfo)
+    .then((res) => {
+      console.log(res.data);
+      if(res.data) {
+        toast.success("User created successfully");
+      }
+      localStorage.setItem("Users", JSON.stringify(res.data.user))
+    })
+    .catch((err) => {
+      if(err.response) {
+        console.log("Error " + err);
+        toast.error("Error " + err.response.data.message);
+      }
+    })
+   }
+
+   const handleSignup = () => {
+    setTimeout(() => {
+      navigate("/");
+      window.location.reload()
+    }, 500);
+   }
+
 
   return (
     <>
@@ -41,7 +74,14 @@ function Signup() {
                 type="text"
                 placeholder="Enter Your name"
                 className="w-96 px-3 py-2 my-1 outline-none rounded border dark:bg-slate-900 dark:text-white"
+                {...register("fullname", { required: true })}
               />
+              <br />
+              {errors.fullname && (
+                <span className="text-sm text-red-500">
+                  This field is required
+                </span>
+              )}
               <br />
               <span>Email</span>
               <br />
@@ -74,7 +114,9 @@ function Signup() {
               )}
               <br />
               <div className="flex justify-around mt-4">
-                <button className="bg-pink-500 text-white px-3 py-1 rounded-md hover:bg-pink-700 duration-300">
+                <button className="bg-pink-500 text-white px-3 py-1 rounded-md hover:bg-pink-700 duration-300"
+                  onClick={handleSignup}
+                >
                   Signup
                 </button>
                 <p>
