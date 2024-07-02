@@ -10,6 +10,11 @@ app.use(cors())
 app.use(express.json())
 dotenv.config();
 
+// to check if backend is running 
+app.get("/health", (req, res) => {
+  res.status(200).send("Server is running");
+});
+
 const mogoDbURI = process.env.DB_URL
 const PORT = process.env.PORT || 4000
 
