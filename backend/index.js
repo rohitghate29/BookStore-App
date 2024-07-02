@@ -10,7 +10,7 @@ app.use(cors())
 app.use(express.json())
 dotenv.config();
 
-const mogoDbURI = process.env.MONGODBURI
+const mogoDbURI = process.env.DB_URL
 const PORT = process.env.PORT || 4000
 
 // connect to db
